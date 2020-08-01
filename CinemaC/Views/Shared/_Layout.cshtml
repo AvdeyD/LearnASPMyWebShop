@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using CinemaC.Helpers
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,6 +25,7 @@
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     <li>@Html.ActionLink("Информация", "About", "Home")</li>
                     <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Логин", "Login", "Account")</li>
                 </ul>
             </div>
         </div>
@@ -31,6 +33,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+        @Html.Footer($"{Convert.ToChar(169)}{DateTime.Now.Year}-MY.ASP.NETApplication", "Second Layer")
         <footer>
             <p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>
         </footer>
