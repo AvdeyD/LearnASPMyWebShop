@@ -1,92 +1,47 @@
 ﻿using System;
 using System.Web.Mvc;
+using CinemaC.Interfaces;
 using CinemaC.Models;
 using CinemaC.Models.Domain;
+using CinemaC.Services;
 using Newtonsoft.Json;
 
 namespace CinemaC.Controllers
 {
     public class AdminController : Controller
     {
-        private const string Path = "/Files/Data.json";
-        public ActionResult Index()
+        private readonly ITicketService _ticketService;
+
+        public AdminController()
         {
-            var movies = new Movie[]
-            {
-                new Movie
-                {
-                    Id = 1,
-                    Description = "asdfasdf",
-                    Director = "Квентин Тарантино",
-                    Duration = 161,
-                    Genres = new Genre[] {Genre.Comedy, Genre.Drama},
-                    ImgUrl = "ImgUrlaaaa",
-                    MinAge = 18,
-                    Rating = 7.6f,
-                    ReleaseDate = 2019,
-                    Title = "Однажды в Голливуде"
-                }
-            };
-
-            var halls = new Hall[]
-            {
-                new Hall
-                {
-                    Id = 1,
-                    Name = "Зал 1",
-                    Places = 100
-                },
-                new Hall
-                {
-                    Id = 2,
-                    Name = "Зал 2",
-                    Places = 100
-                }
-            };
-
-            var timeSlots = new TimeSlot[]
-            {
-                new TimeSlot
-                {
-                    Id = 1,
-                    Hall = halls[0],
-                    Movie = movies[0],
-                    Cost = 170,
-                    Format = Format.TwoD,
-                    StarTime = new DateTime(2019,08,26,18,00,00)
-                },
-                new TimeSlot
-                {
-                    Id = 2,
-                    Hall = halls[1],
-                    Movie = movies[0],
-                    Cost = 350,
-                    Format = Format.IMAX,
-                    StarTime = new DateTime(2019,08,26,18,30,00)    
-                }
-            };
-
-            var fileModel = new FileModel
-            {
-                Halls = halls,
-                TimeSlots = timeSlots,
-                Movies = movies
-            };
-
-            
-
-            var json = JsonConvert.SerializeObject(fileModel);
-
-            System.IO.File.WriteAllText(HttpContext.Server.MapPath(Path), json);
-
-            return View();
+            _ticketService = new JsonTicketService(System.Web.HttpContext.Current);
         }
 
-        public ActionResult Tickets()
+        public ActionResult FindMovieById(int id)
         {
-            var json = System.IO.File.ReadAllText(HttpContext.Server.MapPath(Path));
-            var fileModel = JsonConvert.DeserializeObject<FileModel>(json);
-            return View();
+            var movie = _ticketService.GetMovieById(id);
+            if (movie == null)
+                return Content("Movie with such ID does not exist", "applicaction/json");
+            var movieJson = JsonConvert.SerializeObject(movie);
+            return Content(movieJson, "applicaction/json");
+        }
+
+        public ActionResult FindHallById(int id)
+        {
+            var hall = _ticketService.GetHallById(id);
+            if (hall == null)
+                return Content("Movie with such ID does not exist", "applicaction/json");
+            var hallJson = JsonConvert.SerializeObject(hall);
+            return Content(hallJson, "applicaction/json");
+        }
+
+        public ActionResult FindTimeSlotById(int id)
+        {
+            var timeSlot = _ticketService.GetTimeSlotById(id);
+            if (timeSlot == null)
+                return Content("Movie with such ID does not exist", "applicaction/json");
+            var timeSlotJson = JsonConvert.SerializeObject(timeSlot);
+            return Content(timeSlotJson, "applicaction/json");
         }
     }
 }
