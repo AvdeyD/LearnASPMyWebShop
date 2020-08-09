@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Web;
 using CinemaC.Interfaces;
 using CinemaC.Models;
@@ -52,6 +53,36 @@ namespace CinemaC.Services
             var fullModel = GetDataFromFile();
             return fullModel.TimeSlots;
         }
+
+        public bool UpdateMovie(Movie movie)
+        {
+            var fullModel = GetDataFromFile();
+            var movieToUpdate = fullModel.Movies.FirstOrDefault(x => x.Id == movie.Id);
+            if (movieToUpdate == null)
+            {
+                return false;
+            }
+
+            movieToUpdate.Title = movie.Title;
+            movieToUpdate.MinAge = movie.MinAge;
+            movieToUpdate.Director = movie.Director;
+            movieToUpdate.Duration = movie.Duration;
+            movieToUpdate.Description = movie.Description;
+            movieToUpdate.ImgUrl = movie.ImgUrl;
+            if(movie.Genres != null)movieToUpdate.Genres = movie.Genres;
+            movieToUpdate.Rating = movie.Rating;
+            movieToUpdate.ReleaseDate = movie.ReleaseDate;
+            SaveToFile(fullModel);
+            return true;
+        }
+
+        private void SaveToFile(FileModel model)
+        {
+            var jsonFilePath = HttpContext.Server.MapPath(PathToJson);
+            var serializeModel = JsonConvert.SerializeObject(model);
+            File.WriteAllText(jsonFilePath, serializeModel);
+        }
+
 
         private FileModel GetDataFromFile()
         {

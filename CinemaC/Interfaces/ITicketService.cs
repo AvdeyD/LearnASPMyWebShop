@@ -10,5 +10,6 @@ namespace CinemaC.Interfaces
         Hall[] GetAllHalls();
         TimeSlot GetTimeSlotById(int id);
         TimeSlot[] GetAllTimeSlots();
+        bool UpdateMovie(Movie movie);
     }
 }
