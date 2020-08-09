@@ -43,5 +43,36 @@ namespace CinemaC.Controllers
             var timeSlotJson = JsonConvert.SerializeObject(timeSlot);
             return Content(timeSlotJson, "applicaction/json");
         }
+
+        public ActionResult MovieList()
+        {
+            var movies = _ticketService.GetAllMovies();
+            return View("MovieList", movies);
+        }
+
+
+        [HttpGet]
+        public ActionResult EditMovie(int movieId)
+        {
+            var movie = _ticketService.GetMovieById(movieId);
+            return View("EditMovie", movie);
+        }
+
+
+        [HttpPost]
+        public ActionResult EditMovie(Movie model)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateResult = _ticketService.UpdateMovie(model);
+                if (updateResult)
+                {
+                    return RedirectToAction("MovieList");
+                }
+
+                return Content("Update failed.");
+            }
+            return View("EditMovie", model);
+        }
     }
 }
