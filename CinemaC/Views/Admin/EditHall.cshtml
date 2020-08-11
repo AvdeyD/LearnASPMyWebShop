@@ -1,0 +1,28 @@
+﻿@using CinemaC.Models
+@model CinemaC.Models.Domain.Hall
+
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.Halls)
+}
+
+
+@using (Html.BeginForm("EditHall", "Admin"))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div>
+        @Html.LabelFor(x => x.Name)
+        @Html.EditorFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Places)
+        @Html.EditorFor(x => x.Places)
+        @Html.ValidationMessageFor(x => x.Places)
+    </div>
+
+
+    <input type="submit" value="Save Changes" />
+
+}

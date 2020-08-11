@@ -1,4 +1,11 @@
-﻿@model CinemaC.Models.Domain.Movie
+﻿@using CinemaC.Models
+@model CinemaC.Models.Domain.Movie
+
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.Movies)
+}
+
 
 @using (Html.BeginForm("EditMovie", "Admin"))
 {
@@ -41,6 +48,6 @@
 
     @Html.Partial("Genres", Model.Genres)
 
-    <input type="submit" value="Save Changes"/>
+    <input type="submit" value="Save Changes" />
 
 }

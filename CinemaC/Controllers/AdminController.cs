@@ -50,6 +50,18 @@ namespace CinemaC.Controllers
             return View("MovieList", movies);
         }
 
+        public ActionResult HallList()
+        {
+            var halls = _ticketService.GetAllHalls();
+            return View("HallList", halls);
+        }
+
+        public ActionResult TimeSlotList()
+        {
+            var timeSlots = _ticketService.GetAllTimeSlots();
+            return View("TimeSlotList", timeSlots);
+        }
+
 
         [HttpGet]
         public ActionResult EditMovie(int movieId)
@@ -57,7 +69,6 @@ namespace CinemaC.Controllers
             var movie = _ticketService.GetMovieById(movieId);
             return View("EditMovie", movie);
         }
-
 
         [HttpPost]
         public ActionResult EditMovie(Movie model)
@@ -72,7 +83,68 @@ namespace CinemaC.Controllers
 
                 return Content("Update failed.");
             }
+
             return View("EditMovie", model);
+        }
+
+        [HttpGet]
+        public ActionResult EditHall(int movieId)
+        {
+            var hall = _ticketService.GetHallById(movieId);
+            return View("EditHall", hall);
+        }
+
+        [HttpPost]
+        public ActionResult EditHall(Hall hall)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateResult = _ticketService.UpdateHall(hall);
+                if (updateResult)
+                {
+                    return RedirectToAction("MovieList");
+                }
+
+                return Content("Update failed.");
+            }
+
+            return View("EditHall", hall);
+        }
+
+        [HttpGet]
+        public ActionResult EditTimeSlot(int movieId)
+        {
+            var timeSlot = _ticketService.GetTimeSlotById(movieId);
+            return View("EditTimeSlot", timeSlot);
+        }
+
+        [HttpPost]
+        public ActionResult EditTimeSlot(TimeSlot timeSlot)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateResult = _ticketService.UpdateTimeSlot(timeSlot);
+                if (updateResult)
+                {
+                    return RedirectToAction("MovieList");
+                }
+
+                return Content("Update failed.");
+            }
+
+            return View("EditTimeSlot", timeSlot);
+        }
+
+        [HttpGet]
+        public ActionResult GetMovieTimesSlotsList(int movieId)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateResult = _ticketService.GetTimeSlotById(movieId);
+                return View("EditTimeSlot", updateResult);
+            }
+
+            return RedirectToAction("MovieList");
         }
     }
 }

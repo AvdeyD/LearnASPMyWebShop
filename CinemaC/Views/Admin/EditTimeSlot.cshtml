@@ -1,0 +1,37 @@
+﻿@using CinemaC.Models
+@model CinemaC.Models.Domain.TimeSlot
+
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.TimeSlots)
+}
+
+
+@using (Html.BeginForm("EditTimeSlot", "Admin"))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.HallId)
+    @Html.HiddenFor(x => x.MovieId)
+
+    <div>
+        @Html.LabelFor(x => x.Format)
+        @Html.EditorFor(x => x.Format)
+        @Html.ValidationMessageFor(x => x.Format)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.StarTime)
+        @Html.EditorFor(x => x.StarTime)
+        @Html.ValidationMessageFor(x => x.StarTime)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Cost)
+        @Html.EditorFor(x => x.Cost)
+        @Html.ValidationMessageFor(x => x.Cost)
+    </div>
+
+    <input type="submit" value="Save Changes" />
+
+}
+
