@@ -1,0 +1,38 @@
+﻿@using CinemaC.Models
+@model CinemaC.Models.Domain.TimeSlot[]
+
+
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.TimeSlots)
+}
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Hall</th>
+            <th>Movie</th>
+            <th>StartTime</th>
+            <th>Cost</th>
+            <th>Format</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var timeSlot in Model)
+        {
+            <tr>
+                <td>@timeSlot.Id</td>
+                <td>@timeSlot.HallId</td>
+                <td>@timeSlot.MovieId</td>
+                <td>@timeSlot.StarTime</td>
+                <td>@timeSlot.Cost</td>
+                <td>@timeSlot.Format</td>
+                <td> @Html.ActionLink("Edit", "EditTimeSlot", "Admin", new {timeslotId = timeSlot.Id}, new { @class = "btn btn-primary btn-block" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

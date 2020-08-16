@@ -1,0 +1,30 @@
+﻿@using System.Web.Mvc.Html
+@using CinemaC.Models
+@model CinemaC.Models.Domain.Hall[]
+
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.Halls)
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Places</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hall in Model)
+        {
+            <tr>
+                <td>@hall.Id</td>
+                <td>@hall.Name </td>
+                <td>@hall.Places </td>
+                <td> @Html.ActionLink("Edit", "EditHall", "Admin", new {hallId = hall.Id}, new { @class = "btn btn-primary btn-block" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

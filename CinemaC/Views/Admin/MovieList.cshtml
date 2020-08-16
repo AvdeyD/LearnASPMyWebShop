@@ -1,25 +1,36 @@
-﻿@model CinemaC.Models.Domain.Movie[]
+﻿@using CinemaC.Models
+@model CinemaC.Models.Domain.Movie[]
 
-<table>
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.Movies)
+}
+
+<table class="table table-bordered">
+    <thead>
     <tr>
-        <th style="min-width: 30px">Id</th>
+        <th>Id</th>
         <th>Poster</th>
-        <th style="min-width: 200px">Title</th>
-        <th style="min-width: 300px">Description</th>
+        <th>Title</th>
+        <th>Description</th>
         <th>Action</th>
     </tr>
+    </thead>
+    <tbody>
     @foreach (var movie in Model)
     {
         <tr>
             <td>@movie.Id</td>
             <td>
-                <img style="max-height: 100px" src="@movie.ImgUrl"/>
+                <img style="max-height: 100px" src="@movie.ImgUrl" />
             </td>
             <td>@movie.Title</td>
             <td>@movie.Description</td>
-            <td> @Html.ActionLink("Edit", "EditMovie", "Admin", new {movieId = movie.Id}, null)</td>
+            <td >
+                @Html.ActionLink("Edit", "EditMovie", "Admin", new {movieId = movie.Id}, new {@class = "btn btn-primary btn-block"})
+                @Html.ActionLink("TimeSlots", "GetMovieTimesSlotsList", "Admin", new {movieId = movie.Id}, new {@class = "btn btn-primary btn-block"})
+            </td>
         </tr>
     }
-    <input
-
+    </tbody>
 </table>

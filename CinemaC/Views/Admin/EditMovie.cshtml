@@ -1,46 +1,53 @@
-﻿@model CinemaC.Models.Domain.Movie
+﻿@using CinemaC.Models
+@model CinemaC.Models.Domain.Movie
+
+@section SubNav
+{
+    @Html.Partial("SubNavigation", SubNavigationMenu.Movies)
+}
+
 
 @using (Html.BeginForm("EditMovie", "Admin"))
 {
     @Html.HiddenFor(x => x.Id)
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.Title)
-        @Html.EditorFor(x => x.Title)
+        @Html.EditorFor(x => x.Title, new {htmlAttributes = new {@class = "form-control"}})
         @Html.ValidationMessageFor(x => x.Title)
     </div>
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.Description)
-        @Html.EditorFor(x => x.Description)
+        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "5" } )
         @Html.ValidationMessageFor(x => x.Description)
     </div>
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.ImgUrl)
-        @Html.EditorFor(x => x.ImgUrl)
+        @Html.EditorFor(x => x.ImgUrl, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.ImgUrl)
     </div>
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.Duration)
-        @Html.EditorFor(x => x.Duration)
+        @Html.EditorFor(x => x.Duration, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.Duration)
     </div>
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.MinAge)
-        @Html.EditorFor(x => x.MinAge)
+        @Html.EditorFor(x => x.MinAge, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.MinAge)
     </div>
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.Rating)
-        @Html.EditorFor(x => x.Rating)
+        @Html.EditorFor(x => x.Rating, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.Rating)
     </div>
 
     @Html.Partial("Genres", Model.Genres)
 
-    <input type="submit" value="Save Changes"/>
+    <input type="submit" value="Save Changes" />
 
 }

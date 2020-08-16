@@ -42,6 +42,8 @@ namespace CinemaC.Services
             return fullModel.Halls;
         }
 
+
+
         public TimeSlot GetTimeSlotById(int id)
         {
             var fullModel = GetDataFromFile();
@@ -75,6 +77,46 @@ namespace CinemaC.Services
             SaveToFile(fullModel);
             return true;
         }
+
+        public bool UpdateTimeSlot(TimeSlot timeSlot)
+        {
+            var fullModel = GetDataFromFile();
+            var timeSlotsToUpdate = fullModel.TimeSlots.FirstOrDefault(x => x.Id == timeSlot.Id);
+            if (timeSlotsToUpdate == null)
+            {
+                return false;
+            }
+
+            timeSlotsToUpdate.StarTime = timeSlot.StarTime;
+            timeSlotsToUpdate.Format = timeSlot.Format;
+            timeSlotsToUpdate.Cost = timeSlot.Cost;
+            timeSlotsToUpdate.MovieId = timeSlot.MovieId;
+            timeSlotsToUpdate.HallId = timeSlot.HallId;
+            SaveToFile(fullModel);
+            return true;
+        }
+
+        public TimeSlot[] GeTimeSlotsByMoveId(int moveId)
+        {
+            var fullModel = GetDataFromFile();
+            return fullModel.TimeSlots.Where(x => x.MovieId == moveId).ToArray(); 
+        }
+
+        public bool UpdateHall(Hall hall)
+        {
+            var fullModel = GetDataFromFile();
+            var hallToUpdate = fullModel.Halls.FirstOrDefault(x => x.Id == hall.Id);
+            if (hallToUpdate == null)
+            {
+                return false;
+            }
+
+            hallToUpdate.Name = hall.Name;
+            hallToUpdate.Places = hall.Places;
+            SaveToFile(fullModel);
+            return true;
+        }
+
 
         private void SaveToFile(FileModel model)
         {
