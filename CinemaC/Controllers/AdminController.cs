@@ -88,9 +88,9 @@ namespace CinemaC.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditHall(int movieId)
+        public ActionResult EditHall(int hallId)
         {
-            var hall = _ticketService.GetHallById(movieId);
+            var hall = _ticketService.GetHallById(hallId);
             return View("EditHall", hall);
         }
 
@@ -102,7 +102,7 @@ namespace CinemaC.Controllers
                 var updateResult = _ticketService.UpdateHall(hall);
                 if (updateResult)
                 {
-                    return RedirectToAction("MovieList");
+                    return RedirectToAction("HallList");
                 }
 
                 return Content("Update failed.");
@@ -112,9 +112,9 @@ namespace CinemaC.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditTimeSlot(int movieId)
+        public ActionResult EditTimeSlot(int timeslotId)
         {
-            var timeSlot = _ticketService.GetTimeSlotById(movieId);
+            var timeSlot = _ticketService.GetTimeSlotById(timeslotId);
             return View("EditTimeSlot", timeSlot);
         }
 
@@ -126,7 +126,7 @@ namespace CinemaC.Controllers
                 var updateResult = _ticketService.UpdateTimeSlot(timeSlot);
                 if (updateResult)
                 {
-                    return RedirectToAction("MovieList");
+                    return RedirectToAction("TimeSlotList");
                 }
 
                 return Content("Update failed.");

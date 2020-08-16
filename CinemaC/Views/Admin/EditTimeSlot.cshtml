@@ -13,21 +13,21 @@
     @Html.HiddenFor(x => x.HallId)
     @Html.HiddenFor(x => x.MovieId)
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.Format)
-        @Html.EditorFor(x => x.Format)
+        @Html.EditorFor(x => x.Format, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.Format)
     </div>
 
-    <div>
+    <div class="form-group">
         @Html.LabelFor(x => x.StarTime)
-        @Html.EditorFor(x => x.StarTime)
+        @Html.EditorFor(x => x.StarTime, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.StarTime)
     </div>
 
-    <div>
+    <div class="form-group"y>
         @Html.LabelFor(x => x.Cost)
-        @Html.EditorFor(x => x.Cost)
+        @Html.EditorFor(x => x.Cost, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.Cost)
     </div>
 
