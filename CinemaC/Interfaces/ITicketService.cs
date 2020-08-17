@@ -13,5 +13,7 @@ namespace CinemaC.Interfaces
         bool UpdateMovie(Movie movie);
         bool UpdateHall(Hall movie);
         bool UpdateTimeSlot(TimeSlot movie);
+        bool CreateMovie(Movie newMovie);
+        bool CreateTimeSlot(TimeSlot newTimeSlot);
     }
 }

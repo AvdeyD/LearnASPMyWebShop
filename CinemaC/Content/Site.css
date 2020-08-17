@@ -27,3 +27,15 @@ textarea {
 .sub-nav-active {
     font-weight: bold;
 }
+
+.admin-heading {
+    max-width: 300px;
+    display: inline-block;
+}
+.admin-add-btn {
+    display: inline-block;
+    width: 250px;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\PopulateHallsListAttributes.cs" />
+    <Compile Include="Attributes\PopulateMoviesListAttributes.cs" />
     <Compile Include="Binders\LoginBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -190,6 +192,10 @@
     <Content Include="Views\Admin\HallList.cshtml" />
     <Content Include="Views\Admin\TimeSlotList.cshtml" />
     <Content Include="Views\Shared\SubNavigation.cshtml" />
+    <Content Include="Views\Admin\AddMovie.cshtml" />
+    <Content Include="Views\Admin\AddTimeSlot.cshtml" />
+    <Content Include="Views\Admin\HallsSelector.cshtml" />
+    <Content Include="Views\Admin\MoviesSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

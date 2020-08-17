@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using CinemaC.Attributes;
 using CinemaC.Interfaces;
 using CinemaC.Models;
 using CinemaC.Models.Domain;
@@ -112,6 +113,7 @@ namespace CinemaC.Controllers
         }
 
         [HttpGet]
+        [PopulateHallsListAttributes, PopulateMoviesListAttributes]
         public ActionResult EditTimeSlot(int timeslotId)
         {
             var timeSlot = _ticketService.GetTimeSlotById(timeslotId);
@@ -145,6 +147,48 @@ namespace CinemaC.Controllers
             }
 
             return RedirectToAction("MovieList");
+        }
+        [HttpGet]
+        public ActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMovie(Movie newMovie)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _ticketService.CreateMovie(newMovie);
+                if (result)
+                {
+                    return RedirectToAction("MovieList");
+                }
+                return Content("Update failed");
+            }
+            return View(newMovie);
+        }
+
+        [HttpGet]
+        [PopulateHallsListAttributes, PopulateMoviesListAttributes]
+        public ActionResult AddTimeSlot()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTimeSlot(TimeSlot newTimeSlot)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _ticketService.CreateTimeSlot(newTimeSlot);
+                if (result)
+                {
+                    return RedirectToAction("TimeSlotList");
+                }
+                return Content("Update failed");
+            }
+            return View(newTimeSlot);
         }
     }
 }

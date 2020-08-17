@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web;
 using CinemaC.Interfaces;
@@ -96,6 +97,26 @@ namespace CinemaC.Services
             return true;
         }
 
+        public bool CreateMovie(Movie newMovie)
+        {
+            var fullModel = GetDataFromFile();
+            try
+            {
+                var newMovieId = fullModel.Movies.Max(m => m.Id) + 1;
+                newMovie.Id = newMovieId;
+                var existingMoviesList = fullModel.Movies.ToList();
+                existingMoviesList.Add(newMovie);
+                fullModel.Movies = existingMoviesList.ToArray();
+                SaveToFile(fullModel);
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public TimeSlot[] GeTimeSlotsByMoveId(int moveId)
         {
             var fullModel = GetDataFromFile();
@@ -136,5 +157,25 @@ namespace CinemaC.Services
             return fileModel;
         }
 
+
+        public bool CreateTimeSlot(TimeSlot newTimeSlot)
+        {
+            var fullModel = GetDataFromFile();
+            try
+            {
+                var newTimeSlotId = fullModel.TimeSlots.Max(m => m.Id) + 1;
+                newTimeSlot.Id = newTimeSlotId;
+                var existingTimeSlotsList = fullModel.TimeSlots.ToList();
+                existingTimeSlotsList.Add(newTimeSlot);
+                fullModel.TimeSlots = existingTimeSlotsList.ToArray();
+                SaveToFile(fullModel);
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
