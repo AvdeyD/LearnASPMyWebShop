@@ -7,6 +7,12 @@
     @Html.Partial("SubNavigation", SubNavigationMenu.Halls)
 }
 
+<h2 class="admin-heading">Halls</h2>
+<div class="admin-add-btn">
+    @Html.ActionLink("Add Hall", "AddHall", "Admin", null, new { @class = "btn btn-success btn-block" })
+</div>
+
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -23,7 +29,7 @@
                 <td>@hall.Id</td>
                 <td>@hall.Name </td>
                 <td>@hall.Places </td>
-                <td> @Html.ActionLink("Edit", "EditHall", "Admin", new {hallId = hall.Id}, new { @class = "btn btn-primary btn-block" })</td>
+                <td> @Html.ActionLink("Edit", "EditHall", "Admin", new { hallId = hall.Id }, new { @class = "btn btn-primary btn-block" })</td>
             </tr>
         }
     </tbody>

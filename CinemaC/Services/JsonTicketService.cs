@@ -177,5 +177,25 @@ namespace CinemaC.Services
 
             return true;
         }
+
+        public bool CreateHall(Hall newHall)
+        {
+            var fullModel = GetDataFromFile();
+            try
+            {
+                var newhallId = fullModel.TimeSlots.Max(m => m.Id) + 1;
+                newHall.Id = newhallId;
+                var existingHalList = fullModel.Halls.ToList();
+                existingHalList.Add(newHall);
+                fullModel.Halls = existingHalList.ToArray();
+                SaveToFile(fullModel);
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

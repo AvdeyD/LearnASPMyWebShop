@@ -19,11 +19,16 @@
 
     <div class="form-group">
         @Html.LabelFor(x => x.StarTime)
-        @Html.EditorFor(x => x.StarTime, new { htmlAttributes = new { @class = "form-control" } })
+        <div class='input-group date' id='@Html.IdFor(x=>x.StarTime)'>
+            <input type='text' class="form-control" name="@Html.NameFor(x=>x.StarTime)"  value="@Html.ValueFor(x=>x.StarTime)"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
         @Html.ValidationMessageFor(x => x.StarTime)
     </div>
 
-    <div class="form-group"y>
+    <div class="form-group" y>
         @Html.LabelFor(x => x.Cost)
         @Html.EditorFor(x => x.Cost, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(x => x.Cost)
@@ -36,3 +41,14 @@
 
 }
 
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#@Html.IdFor(x=>x.StarTime)').datetimepicker(
+                {
+                    locale: window.navigator.language
+                });
+        });
+    </script>
+}

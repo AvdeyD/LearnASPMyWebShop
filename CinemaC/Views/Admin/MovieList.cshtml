@@ -34,7 +34,7 @@
             <td>@movie.Description</td>
             <td >
                 @Html.ActionLink("Edit", "EditMovie", "Admin", new {movieId = movie.Id}, new {@class = "btn btn-primary btn-block"})
-                @Html.ActionLink("TimeSlots", "GetMovieTimesSlotsList", "Admin", new {movieId = movie.Id}, new {@class = "btn btn-primary btn-block"})
+                @Html.ActionLink("TimeSlots", "EditTimeSlot", "Admin", new {timeSlotId = movie.Id}, new {@class = "btn btn-primary btn-block"})
             </td>
         </tr>
     }

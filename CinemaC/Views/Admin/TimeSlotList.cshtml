@@ -1,5 +1,5 @@
 ﻿@using CinemaC.Models
-@model CinemaC.Models.Domain.TimeSlot[]
+@model TimeSlotGridRow[]
 
 
 @section SubNav
@@ -30,8 +30,8 @@
         {
             <tr>
                 <td>@timeSlot.Id</td>
-                <td>@timeSlot.HallId</td>
-                <td>@timeSlot.MovieId</td>
+                <td>@timeSlot.Hall.Name</td>
+                <td>@timeSlot.Movie.Title</td>
                 <td>@timeSlot.StarTime</td>
                 <td>@timeSlot.Cost</td>
                 <td>@timeSlot.Format</td>
