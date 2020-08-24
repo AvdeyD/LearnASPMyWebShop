@@ -1,11 +1,16 @@
 ﻿@using CinemaC.Models
-@model CinemaC.Models.Domain.TimeSlot[]
+@model TimeSlotGridRow[]
 
 
 @section SubNav
 {
     @Html.Partial("SubNavigation", SubNavigationMenu.TimeSlots)
 }
+
+<h2 class="admin-heading">TimeSlots</h2>
+<div class="admin-add-btn">
+    @Html.ActionLink("Add Time Slot", "AddTimeSlot", "Admin", null, new { @class = "btn btn-success btn-block" })
+</div>
 
 
 <table class="table table-bordered">
@@ -25,12 +30,12 @@
         {
             <tr>
                 <td>@timeSlot.Id</td>
-                <td>@timeSlot.HallId</td>
-                <td>@timeSlot.MovieId</td>
+                <td>@timeSlot.Hall.Name</td>
+                <td>@timeSlot.Movie.Title</td>
                 <td>@timeSlot.StarTime</td>
                 <td>@timeSlot.Cost</td>
                 <td>@timeSlot.Format</td>
-                <td> @Html.ActionLink("Edit", "EditTimeSlot", "Admin", new {timeslotId = timeSlot.Id}, new { @class = "btn btn-primary btn-block" })</td>
+                <td> @Html.ActionLink("Edit", "EditTimeSlot", "Admin", new { timeslotId = timeSlot.Id }, new { @class = "btn btn-primary btn-block" })</td>
             </tr>
         }
     </tbody>

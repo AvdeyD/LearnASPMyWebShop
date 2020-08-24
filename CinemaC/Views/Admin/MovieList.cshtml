@@ -6,6 +6,12 @@
     @Html.Partial("SubNavigation", SubNavigationMenu.Movies)
 }
 
+<h2 class="admin-heading">Movies</h2>
+<div class="admin-add-btn">
+    @Html.ActionLink("Add movie", "AddMovie", "Admin", null, new {@class="btn btn-success btn-block"})
+</div>
+
+
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -28,7 +34,7 @@
             <td>@movie.Description</td>
             <td >
                 @Html.ActionLink("Edit", "EditMovie", "Admin", new {movieId = movie.Id}, new {@class = "btn btn-primary btn-block"})
-                @Html.ActionLink("TimeSlots", "GetMovieTimesSlotsList", "Admin", new {movieId = movie.Id}, new {@class = "btn btn-primary btn-block"})
+                @Html.ActionLink("TimeSlots", "EditTimeSlot", "Admin", new {timeSlotId = movie.Id}, new {@class = "btn btn-primary btn-block"})
             </td>
         </tr>
     }

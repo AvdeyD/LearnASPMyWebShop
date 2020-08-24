@@ -6,11 +6,13 @@
     @Html.Partial("SubNavigation", SubNavigationMenu.TimeSlots)
 }
 
+<h2>
+    Add TimeSlot
+</h2>
 
-@using (Html.BeginForm("EditTimeSlot", "Admin"))
+
+@using (Html.BeginForm("AddTimeSlot", "Admin"))
 {
-    @Html.HiddenFor(x => x.Id)
-
     <div class="form-group">
         @Html.LabelFor(x => x.Format)
         @Html.EditorFor(x => x.Format, new { htmlAttributes = new { @class = "form-control" } })
@@ -20,7 +22,7 @@
     <div class="form-group">
         @Html.LabelFor(x => x.StarTime)
         <div class='input-group date' id='@Html.IdFor(x=>x.StarTime)'>
-            <input type='text' class="form-control" name="@Html.NameFor(x=>x.StarTime)"  value="@Html.ValueFor(x=>x.StarTime)"/>
+            <input type='text' class="form-control" name="@Html.NameFor(x=>x.StarTime)"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -34,11 +36,10 @@
         @Html.ValidationMessageFor(x => x.Cost)
     </div>
 
-    @Html.Partial("MoviesSelector", Model.MovieId)
-    @Html.Partial("HallsSelector", Model.HallId)
+    @Html.Partial("MoviesSelector", Model?.MovieId)
+    @Html.Partial("HallsSelector", Model?.HallId)
 
-    <input type="submit" value="Save Changes" class="btn btn-success" />
-
+    <input type="submit" value="Add Time Slot" class="btn btn-success" />
 }
 
 @section scripts

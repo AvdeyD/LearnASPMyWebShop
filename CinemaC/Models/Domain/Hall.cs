@@ -1,4 +1,6 @@
-﻿namespace CinemaC.Models.Domain
+﻿using System.Web.Mvc;
+
+namespace CinemaC.Models.Domain
 {
     public class Hall
     {
