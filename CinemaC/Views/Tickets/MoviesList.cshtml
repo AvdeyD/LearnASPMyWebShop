@@ -1,0 +1,51 @@
+﻿@using CinemaC.Extensions
+@using CinemaC.Models
+@model  CinemaC.Models.Tickets.MovieListItem[]
+
+@foreach (var movieItem in Model)
+{
+    <div class="movie-list-section">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="movie-list-header">
+                    <div class="name-movies-list">
+                        @movieItem.Movie.Title
+                    </div>
+                    <div class="rating-movies-list">
+                        Rating:@movieItem.Movie.Rating
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <img class="img-rounded img-movies-list" src="@movieItem.Movie.ImgUrl"/>
+                </div>
+                <div class="movie-list-footer">
+                    <div class="genres-movies-list">
+                        <div >
+                            @string.Join(",", movieItem.Movie.Genres)
+                        </div>
+                        <div>
+                            @movieItem.Movie.Duration.ToDuration()
+                        </div>
+                    </div>
+                    <div class="age-movies-list">
+                        @movieItem.Movie.MinAge+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                @foreach (var timeSlotTag in movieItem.AvailableTimeSlots)
+                {
+                    <div class="timeSlot-tag">
+                        @Html.ActionLink(timeSlotTag.StartTime.ToShortTimeString(), "GetHallInfo", "Tickets",
+                            new{ timeslotId = timeSlotTag.TimeSlotId}, new { @class = "btn btn-default btn-block"})
+                        <span> @timeSlotTag.Cost P</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

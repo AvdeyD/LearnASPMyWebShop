@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using CinemaC.Interfaces;
+using CinemaC.Services;
+using LightInject;
 
 namespace CinemaC
 {
@@ -16,6 +19,12 @@ namespace CinemaC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var container = new ServiceContainer();
+            container.RegisterControllers();
+            container.EnableAnnotatedConstructorInjection();
+            container.Register<ITicketService, JsonTicketService>(new PerRequestLifeTime());
+            container.EnableMvc();
         }
     }
 }
