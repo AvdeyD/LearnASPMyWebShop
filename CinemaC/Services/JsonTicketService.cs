@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using CinemaC.Interfaces;
 using CinemaC.Models;
 using CinemaC.Models.Domain;
+using CinemaC.Models.Tickets;
 using Newtonsoft.Json;
 
 namespace CinemaC.Services
@@ -14,9 +17,25 @@ namespace CinemaC.Services
         private const string PathToJson = "/Files/Data.json";
         private HttpContext HttpContext { get; set; }
 
-        public JsonTicketService(HttpContext httpContext)
+        public JsonTicketService()
         {
-            HttpContext = httpContext;
+            HttpContext = HttpContext.Current;
+        }
+
+        public MovieListItem[] GetFullMoviesInfo()
+        {
+            var allMovies = GetAllMovies();
+            var resultModel = new List<MovieListItem>();
+            foreach (var movie in allMovies)
+            {
+                resultModel.Add(new MovieListItem
+                {
+                    Movie = movie,
+                    AvailableTimeSlots = GetTimeSlotTagsByMovieId(movie.Id)
+                });
+            }
+
+            return resultModel.ToArray();
         }
 
         public Movie GetMovieById(int id)
@@ -30,6 +49,7 @@ namespace CinemaC.Services
             var fullModel = GetDataFromFile();
             return fullModel.Movies;
         }
+
 
         public Hall GetHallById(int id)
         {
@@ -95,6 +115,22 @@ namespace CinemaC.Services
             timeSlotsToUpdate.HallId = timeSlot.HallId;
             SaveToFile(fullModel);
             return true;
+        }
+
+        public TimeSlotTag[] GetTimeSlotTagsByMovieId(int movieId)
+        {
+            var timeSlots = GeTimeSlotsByMoveId(movieId);
+            var resultModel = new List<TimeSlotTag>();
+            foreach (var timeSlot in timeSlots)
+            {
+                resultModel.Add(new TimeSlotTag
+                {
+                    TimeSlotId = timeSlot.Id,
+                    StartTime = timeSlot.StarTime,
+                    Cost = timeSlot.Cost
+                });
+            }
+            return resultModel.ToArray();
         }
 
         public bool CreateMovie(Movie newMovie)

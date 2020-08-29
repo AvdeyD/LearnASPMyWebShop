@@ -1,16 +1,19 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using CinemaC.Interfaces;
 using CinemaC.Services;
+using LightInject;
 
 namespace CinemaC.Attributes
 {
     public class PopulateMoviesListAttributes: ActionFilterAttribute
     {
+        [Inject] private ITicketService TicketService { get; set; }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var ticketServise = new JsonTicketService(HttpContext.Current);
+          
             filterContext.Controller.ViewData["MoviesList"] =
-                ticketServise.GetAllMovies();
+                TicketService.GetAllMovies();
             base.OnActionExecuting(filterContext);
         }
     }

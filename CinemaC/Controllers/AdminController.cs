@@ -6,22 +6,21 @@ using CinemaC.Interfaces;
 using CinemaC.Models;
 using CinemaC.Models.Domain;
 using CinemaC.Services;
+using LightInject;
 using Newtonsoft.Json;
 
 namespace CinemaC.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ITicketService _ticketService;
+        [Inject]
+        public ITicketService TicketService { get; set; }
+    
 
-        public AdminController()
-        {
-            _ticketService = new JsonTicketService(System.Web.HttpContext.Current);
-        }
-
+        
         public ActionResult FindMovieById(int id)
         {
-            var movie = _ticketService.GetMovieById(id);
+            var movie = TicketService.GetMovieById(id);
             if (movie == null)
                 return Content("Movie with such ID does not exist", "applicaction/json");
             var movieJson = JsonConvert.SerializeObject(movie);
@@ -30,7 +29,7 @@ namespace CinemaC.Controllers
 
         public ActionResult FindHallById(int id)
         {
-            var hall = _ticketService.GetHallById(id);
+            var hall = TicketService.GetHallById(id);
             if (hall == null)
                 return Content("Movie with such ID does not exist", "applicaction/json");
             var hallJson = JsonConvert.SerializeObject(hall);
@@ -39,7 +38,7 @@ namespace CinemaC.Controllers
 
         public ActionResult FindTimeSlotById(int id)
         {
-            var timeSlot = _ticketService.GetTimeSlotById(id);
+            var timeSlot = TicketService.GetTimeSlotById(id);
             if (timeSlot == null)
                 return Content("Movie with such ID does not exist", "applicaction/json");
             var timeSlotJson = JsonConvert.SerializeObject(timeSlot);
@@ -48,25 +47,25 @@ namespace CinemaC.Controllers
 
         public ActionResult MovieList()
         {
-            var movies = _ticketService.GetAllMovies();
+            var movies = TicketService.GetAllMovies();
             return View("MovieList", movies);
         }
 
         public ActionResult HallList()
         {
-            var halls = _ticketService.GetAllHalls();
+            var halls = TicketService.GetAllHalls();
             return View("HallList", halls);
         }
 
         public ActionResult TimeSlotList()
         {
-            return View("TimeSlotList", ProccessTimeSlots(_ticketService.GetAllTimeSlots()));
+            return View("TimeSlotList", ProccessTimeSlots(TicketService.GetAllTimeSlots()));
         }
 
         private TimeSlotGridRow[] ProccessTimeSlots(TimeSlot[] timeSlots)
         {
-            var movies = _ticketService.GetAllMovies();
-            var halls = _ticketService.GetAllHalls();
+            var movies = TicketService.GetAllMovies();
+            var halls = TicketService.GetAllHalls();
             return timeSlots.Select(timeSlot => new TimeSlotGridRow()
             {
                 StarTime = timeSlot.StarTime,
@@ -82,7 +81,7 @@ namespace CinemaC.Controllers
         [HttpGet]
         public ActionResult EditMovie(int movieId)
         {
-            var movie = _ticketService.GetMovieById(movieId);
+            var movie = TicketService.GetMovieById(movieId);
             return View("EditMovie", movie);
         }
 
@@ -91,7 +90,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updateResult = _ticketService.UpdateMovie(model);
+                var updateResult = TicketService.UpdateMovie(model);
                 if (updateResult)
                 {
                     return RedirectToAction("MovieList");
@@ -106,7 +105,7 @@ namespace CinemaC.Controllers
         [HttpGet]
         public ActionResult EditHall(int hallId)
         {
-            var hall = _ticketService.GetHallById(hallId);
+            var hall = TicketService.GetHallById(hallId);
             return View("EditHall", hall);
         }
 
@@ -115,7 +114,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updateResult = _ticketService.UpdateHall(hall);
+                var updateResult = TicketService.UpdateHall(hall);
                 if (updateResult)
                 {
                     return RedirectToAction("HallList");
@@ -131,7 +130,7 @@ namespace CinemaC.Controllers
         [PopulateHallsListAttributes, PopulateMoviesListAttributes]
         public ActionResult EditTimeSlot(int timeslotId)
         {
-            var timeSlot = _ticketService.GetTimeSlotById(timeslotId);
+            var timeSlot = TicketService.GetTimeSlotById(timeslotId);
             return View("EditTimeSlot", timeSlot);
         }
 
@@ -140,7 +139,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updateResult = _ticketService.UpdateTimeSlot(timeSlot);
+                var updateResult = TicketService.UpdateTimeSlot(timeSlot);
                 if (updateResult)
                 {
                     return RedirectToAction("TimeSlotList");
@@ -157,7 +156,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updateResult = _ticketService.GetTimeSlotById(movieId);
+                var updateResult = TicketService.GetTimeSlotById(movieId);
                 return View("EditTimeSlot", updateResult);
             }
 
@@ -174,7 +173,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _ticketService.CreateMovie(newMovie);
+                var result = TicketService.CreateMovie(newMovie);
                 if (result)
                 {
                     return RedirectToAction("MovieList");
@@ -196,7 +195,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _ticketService.CreateTimeSlot(newTimeSlot);
+                var result = TicketService.CreateTimeSlot(newTimeSlot);
                 if (result)
                 {
                     return RedirectToAction("TimeSlotList");
@@ -218,7 +217,7 @@ namespace CinemaC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _ticketService.CreateHall(newhall);
+                var result = TicketService.CreateHall(newhall);
                 if (result)
                 {
                     return RedirectToAction("HallList");

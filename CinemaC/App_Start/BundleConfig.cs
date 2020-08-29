@@ -26,6 +26,8 @@ namespace CinemaC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-datetimepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include("~/Scripts/schedule-info.js"));
         }
     }
 }
