@@ -59,3 +59,16 @@
         </div>
     </div>
 </div>
+
+<div class="js-selected-seat-template hidden">
+    {{#each addedSeats}}
+    <div>
+        Row:{{row}} Seat:{{seat}}
+    </div>
+    {{/each}}
+    {{#if addedSeats}}
+    <div>
+        Total:{{sum}}
+    </div>
+    {{/if}}
+</div>

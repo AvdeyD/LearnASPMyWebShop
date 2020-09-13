@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Handlebars, Version=1.10.1.0, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
+      <HintPath>packages\Handlebars.Net.1.10.1\lib\net452\Handlebars.dll</HintPath>
+    </Reference>
     <Reference Include="LightInject, Version=6.3.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\LightInject.6.3.4\lib\net46\LightInject.dll</HintPath>
     </Reference>

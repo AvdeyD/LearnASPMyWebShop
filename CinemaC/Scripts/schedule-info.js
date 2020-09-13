@@ -3,6 +3,14 @@
         var currentCost = $('.js-seat-container')[0].dataset.currentCost;
         var currentTimeslotId = $('.js-seat-container')[0].dataset.currentTimeslotId;
 
+        //Get the content from scripts block
+
+        var source = document.querySelector("js-selected-seat-template").innerHTML;
+
+        // Compile template
+
+        var template = Handlebars.compile(source);
+
         var selectedSeats = {
             addedSeats: [],
             sum: 0
@@ -32,18 +40,7 @@
                     selectedSeats.addedSeats.push(newSeat);
                 }
                 selectedSeats.sum = currentCost*selectedSeats.addedSeats.length;
-                var resultString = "";
-                selectedSeats.addedSeats.forEach(function(s) {
-                    resultString = resultString +
-                        "<div> Row: " +
-                        s.row +
-                        "Seat:" +
-                        s.seat +
-                        " <\div> \n";
-                });
-                if (selectedSeats.addedSeats) {
-                    resultString = resultString + "<div> Total: " + selectedSeats.sum.toLocaleString() + "<\div>";
-                }
+                var resultString = template(selectedSeats);
                 $(".js-seat-result-container").html(resultString);
             });
         $(".js-seat-container").on("click",

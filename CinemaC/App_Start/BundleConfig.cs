@@ -18,6 +18,7 @@ namespace CinemaC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                "~/Scripts/handlebars.js",
                 "~/Scripts/moment-with-locales.js", 
                 "~/Scripts/bootstrap.js", 
                 "~/Scripts/bootstrap-datetimepicker.js"));
