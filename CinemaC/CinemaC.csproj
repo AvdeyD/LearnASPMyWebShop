@@ -157,7 +157,9 @@
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SubNavigationMenu.cs" />
+    <Compile Include="Models\Tickets\HallInfo.cs" />
     <Compile Include="Models\Tickets\MovieListItem.cs" />
+    <Compile Include="Models\Tickets\RequestStatus.cs" />
     <Compile Include="Models\Tickets\TimeSlotTag.cs" />
     <Compile Include="Models\TimeSlotGridRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

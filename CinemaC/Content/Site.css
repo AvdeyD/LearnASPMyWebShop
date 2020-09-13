@@ -130,3 +130,11 @@ textarea {
     border: 1px solid orange;
     background-color: white;
 }
+
+.cinema-seat.is-reserved .seat-label {
+    background-color: gray
+}
+
+.cinema-seat.is-sold .seat-label {
+    background-color: aqua
+}

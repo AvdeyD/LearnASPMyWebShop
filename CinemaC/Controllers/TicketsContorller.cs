@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CinemaC.Interfaces;
+using CinemaC.Models.Tickets;
 using CinemaC.Services;
+using Newtonsoft.Json;
 
 namespace CinemaC.Controllers
 {
@@ -25,7 +27,23 @@ namespace CinemaC.Controllers
 
         public ActionResult GetHallInfo(int timeslotId)
         {
-            return View("HallInfo");
+            var timeSlot = _ticketService.GetTimeSlotById(timeslotId);
+            var model = new HallInfo()
+            {
+                ColumnsCount = 20,
+                RowsCount = 12,
+                TicketCost = timeSlot.Cost,
+                CurrentTimeSlotId = timeslotId,
+                RequestedSeats = timeSlot.RequestedSeats
+            };
+            return View("HallInfo", model);
+
+        }
+
+        public string ProcessRequest(SeatsProcessRequest request)
+        {
+            var result = _ticketService.AddRequestedSeatsToTimeSlot(request);
+            return JsonConvert.SerializeObject(new {requestResult = result });
         }
     }
 }

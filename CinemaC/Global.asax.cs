@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -15,6 +16,7 @@ namespace CinemaC
     {
         protected void Application_Start()
         {
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -25,6 +27,8 @@ namespace CinemaC
             container.EnableAnnotatedConstructorInjection();
             container.Register<ITicketService, JsonTicketService>(new PerRequestLifeTime());
             container.EnableMvc();
+            
+
         }
     }
 }

@@ -233,5 +233,38 @@ namespace CinemaC.Services
 
             return true;
         }
+
+        public bool AddRequestedSeatsToTimeSlot(SeatsProcessRequest request)
+        {
+            if (!(request?.SeatsRequest?.AddedSeats?.Any() ?? false))
+            {
+                return false;
+            }
+            var fullModel = GetDataFromFile();
+            var timeSlotsForUpdate = fullModel.TimeSlots.FirstOrDefault(x => x.Id == request.TimeSlotId);
+            if (timeSlotsForUpdate==null)
+            {
+                return false;
+            }
+            var requestToProcess  = new List<TimeSlotSeatRequest>();
+            if (timeSlotsForUpdate.RequestedSeats!=null&&timeSlotsForUpdate.RequestedSeats.Any())
+            {
+                requestToProcess = timeSlotsForUpdate.RequestedSeats.ToList();
+            }
+
+            foreach (var addedSeat in request.SeatsRequest.AddedSeats)
+            {
+                requestToProcess.Add(new TimeSlotSeatRequest()
+                {
+                    Row = addedSeat.Row,
+                    Seat = addedSeat.Seat,
+                    Status = request.SelectedStatus
+                });
+            }
+
+            timeSlotsForUpdate.RequestedSeats = requestToProcess.ToArray();
+            SaveToFile(fullModel);
+            return true;
+        }
     }
 }
