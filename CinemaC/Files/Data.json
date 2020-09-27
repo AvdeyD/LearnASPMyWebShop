@@ -1,1 +1,151 @@
-{"Movies":[{"Id":1,"Title":"Однажды ...","Description":"1969 год, золотой век Голливуда уже закончился. Известный актёр Рик Далтон и его дублер Клифф Бут пытаются найти свое место в стремительно меняющемся мире киноиндустрии.","Duration":161,"Genres":[1],"MinAge":21,"Director":"Квентин Тарантино","ImgUrl":"https://upload.wikimedia.org/wikipedia/ru/4/4c/Once_Upon_a_Time_in_Hollywood.jpg","Rating":7.6,"ReleaseDate":null},{"Id":2,"Title":"Убить Билла","Description":"Кровавая история","Duration":180,"Genres":[0],"MinAge":18,"Director":"Квентин Тарантино","ImgUrl":"https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/5/4/5450/a0f61d7169a83e757531dcaab1b980b8.jpeg","Rating":18.0,"ReleaseDate":null}],"Halls":[{"Id":1,"Name":"Зал 1","Places":100},{"Id":2,"Name":"Зал 2","Places":100}],"TimeSlots":[{"Id":1,"StarTime":"2019-08-26T18:00:00","Cost":170.0,"MovieId":1,"HallId":1,"Format":0,"RequestedSeats":[{"Row":1,"Seat":6,"Status":1},{"Row":1,"Seat":7,"Status":1},{"Row":2,"Seat":7,"Status":1},{"Row":2,"Seat":6,"Status":1},{"Row":2,"Seat":8,"Status":0},{"Row":3,"Seat":8,"Status":0},{"Row":3,"Seat":9,"Status":0},{"Row":3,"Seat":10,"Status":1},{"Row":2,"Seat":10,"Status":1},{"Row":2,"Seat":9,"Status":1}]},{"Id":2,"StarTime":"2019-08-26T18:30:00","Cost":350.0,"MovieId":2,"HallId":2,"Format":2,"RequestedSeats":null},{"Id":3,"StarTime":"2019-08-26T18:00:00","Cost":360.0,"MovieId":2,"HallId":1,"Format":2,"RequestedSeats":null},{"Id":4,"StarTime":"0001-01-01T00:00:00","Cost":360.0,"MovieId":2,"HallId":2,"Format":2,"RequestedSeats":null},{"Id":5,"StarTime":"0001-01-01T00:00:00","Cost":250.0,"MovieId":2,"HallId":2,"Format":0,"RequestedSeats":null},{"Id":6,"StarTime":"2020-08-21T00:01:00","Cost":250.0,"MovieId":1,"HallId":1,"Format":0,"RequestedSeats":null}]}
+{
+  "Movies": [
+    {
+      "Id": 1,
+      "Title": "Однажды ...",
+      "Description": "1969 год, золотой век Голливуда уже закончился. Известный актёр Рик Далтон и его дублер Клифф Бут пытаются найти свое место в стремительно меняющемся мире киноиндустрии.",
+      "Duration": 161,
+      "Genres": [
+        1
+      ],
+      "MinAge": 21,
+      "Director": "Квентин Тарантино",
+      "ImgUrl": "https://upload.wikimedia.org/wikipedia/ru/4/4c/Once_Upon_a_Time_in_Hollywood.jpg",
+      "Rating": 7.6,
+      "ReleaseDate": null
+    },
+    {
+      "Id": 2,
+      "Title": "Убить Билла",
+      "Description": "Кровавая история",
+      "Duration": 180,
+      "Genres": [
+        0
+      ],
+      "MinAge": 18,
+      "Director": "Квентин Тарантино",
+      "ImgUrl": "https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/5/4/5450/a0f61d7169a83e757531dcaab1b980b8.jpeg",
+      "Rating": 18.0,
+      "ReleaseDate": null
+    }
+  ],
+  "Halls": [
+    {
+      "Id": 1,
+      "Name": "Зал 1",
+      "Places": 100
+    },
+    {
+      "Id": 2,
+      "Name": "Зал 2",
+      "Places": 100
+    }
+  ],
+  "TimeSlots": [
+    {
+      "Id": 1,
+      "StarTime": "2019-08-26T18:00:00",
+      "Cost": 170.0,
+      "MovieId": 1,
+      "HallId": 1,
+      "Format": 0,
+      "RequestedSeats": [
+        {
+          "Row": 1,
+          "Seat": 6,
+          "Status": 1
+        },
+        {
+          "Row": 1,
+          "Seat": 7,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 7,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 6,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 8,
+          "Status": 0
+        },
+        {
+          "Row": 3,
+          "Seat": 8,
+          "Status": 0
+        },
+        {
+          "Row": 3,
+          "Seat": 9,
+          "Status": 0
+        },
+        {
+          "Row": 3,
+          "Seat": 10,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 10,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 9,
+          "Status": 1
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "StarTime": "2019-08-26T18:30:00",
+      "Cost": 350.0,
+      "MovieId": 2,
+      "HallId": 2,
+      "Format": 2,
+      "RequestedSeats": null
+    },
+    {
+      "Id": 3,
+      "StarTime": "2019-08-26T18:00:00",
+      "Cost": 360.0,
+      "MovieId": 2,
+      "HallId": 1,
+      "Format": 2,
+      "RequestedSeats": null
+    },
+    {
+      "Id": 4,
+      "StarTime": "0001-01-01T00:00:00",
+      "Cost": 360.0,
+      "MovieId": 2,
+      "HallId": 2,
+      "Format": 2,
+      "RequestedSeats": null
+    },
+    {
+      "Id": 5,
+      "StarTime": "0001-01-01T00:00:00",
+      "Cost": 250.0,
+      "MovieId": 2,
+      "HallId": 2,
+      "Format": 0,
+      "RequestedSeats": null
+    },
+    {
+      "Id": 6,
+      "StarTime": "2020-08-21T00:01:00",
+      "Cost": 250.0,
+      "MovieId": 1,
+      "HallId": 1,
+      "Format": 0,
+      "RequestedSeats": null
+    }
+  ]
+}
