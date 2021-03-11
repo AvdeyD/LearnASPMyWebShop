@@ -23,5 +23,7 @@ namespace CinemaC.Interfaces
         bool CreateMovie(Movie newMovie);
         bool CreateTimeSlot(TimeSlot newTimeSlot);
         bool CreateHall(Hall newHall);
+
+        bool AddRequestedSeatsToTimeSlot(SeatsProcessRequest request);
     }
 }

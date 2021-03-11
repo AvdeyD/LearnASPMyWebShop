@@ -14,7 +14,9 @@ namespace CinemaC.Models.Domain
         public int MinAge { get; set; }
         public string Director { get; set; }
         public string ImgUrl { get; set; }
-        public float Rating { get; set; }
+        public double Rating { get; set; }
         public int? ReleaseDate { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

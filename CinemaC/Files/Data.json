@@ -45,26 +45,80 @@
     {
       "Id": 1,
       "StarTime": "2019-08-26T18:00:00",
-      "Cost": 170.00,
+      "Cost": 170.0,
       "MovieId": 1,
       "HallId": 1,
-      "Format": 0
+      "Format": 0,
+      "RequestedSeats": [
+        {
+          "Row": 1,
+          "Seat": 6,
+          "Status": 1
+        },
+        {
+          "Row": 1,
+          "Seat": 7,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 7,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 6,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 8,
+          "Status": 0
+        },
+        {
+          "Row": 3,
+          "Seat": 8,
+          "Status": 0
+        },
+        {
+          "Row": 3,
+          "Seat": 9,
+          "Status": 0
+        },
+        {
+          "Row": 3,
+          "Seat": 10,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 10,
+          "Status": 1
+        },
+        {
+          "Row": 2,
+          "Seat": 9,
+          "Status": 1
+        }
+      ]
     },
     {
       "Id": 2,
       "StarTime": "2019-08-26T18:30:00",
-      "Cost": 350.00,
+      "Cost": 350.0,
       "MovieId": 2,
       "HallId": 2,
-      "Format": 2
+      "Format": 2,
+      "RequestedSeats": null
     },
     {
       "Id": 3,
       "StarTime": "2019-08-26T18:00:00",
-      "Cost": 360.00,
+      "Cost": 360.0,
       "MovieId": 2,
       "HallId": 1,
-      "Format": 2
+      "Format": 2,
+      "RequestedSeats": null
     },
     {
       "Id": 4,
@@ -72,7 +126,8 @@
       "Cost": 360.0,
       "MovieId": 2,
       "HallId": 2,
-      "Format": 2
+      "Format": 2,
+      "RequestedSeats": null
     },
     {
       "Id": 5,
@@ -80,7 +135,8 @@
       "Cost": 250.0,
       "MovieId": 2,
       "HallId": 2,
-      "Format": 0
+      "Format": 0,
+      "RequestedSeats": null
     },
     {
       "Id": 6,
@@ -88,7 +144,8 @@
       "Cost": 250.0,
       "MovieId": 1,
       "HallId": 1,
-      "Format": 0
+      "Format": 0,
+      "RequestedSeats": null
     }
   ]
 }

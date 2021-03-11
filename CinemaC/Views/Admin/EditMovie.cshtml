@@ -1,4 +1,5 @@
 ﻿@using CinemaC.Models
+@using CinemaC.Models.Domain
 @model CinemaC.Models.Domain.Movie
 
 @section SubNav
@@ -52,7 +53,7 @@
         @Html.ValidationMessageFor(x => x.Rating)
     </div>
 
-    @Html.Partial("Genres", Model.Genres)
+    @Html.Partial("Genres", Model.Genres?? new Genre[0])
 
     <input type="submit" value="Save Changes" class="btn btn-success" />
 
